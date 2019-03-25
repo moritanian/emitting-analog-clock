@@ -1,6 +1,6 @@
 # emitting-analog-clock
 
-<a href="https://moritanian.github.io/emitting-analog-clock"><img src="https://moritanian.github.io/Linkage.js/images/sample.png"/></a>
+<a href="https://moritanian.github.io/emitting-analog-clock"><img src="https://moritanian.github.io/emitting-analog-clock/sample.png"/></a>
 
 
 <p align="center"><a href="https://moritanian.github.io/emitting-analog-clock">DEMO</a></p>

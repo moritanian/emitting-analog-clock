@@ -5,9 +5,11 @@ function createAnalogClock(option = {}) {
     id: 'analog-clock',
     shadowing: true,
     showDigital: false,
+    visibleSecondHand: true,
     smooth: false,
     date: null,
-    dateFunc: (date) => date,
+    dateFunc: (now) => now,
+    nextFunc: (date) => ((1500 - date.getMilliseconds()) % 1000) + 500,
     color: '#28d1fa',
     backgroundColor: '#09303aff',
     backgroundImage: null
@@ -85,23 +87,22 @@ function createAnalogClock(option = {}) {
     }
     
     // Hours
-    ctx.beginPath();
     const hoursRad = degToRad((hours*30)-90);
     const hoursRadius =  maxRadius * 0.5;
-    drawClockHand(hoursRad, hoursRadius, 7);
+    drawClockHand(hoursRad, hoursRadius, option.size / 300 * 7);
     ctx.stroke();
     
     // Minutes
-    ctx.beginPath();
     const minutesRad = degToRad((minutes*6)-90);
     const minutesRadius = maxRadius * 0.8;
-    drawClockHand(minutesRad, minutesRadius, 10);
+    drawClockHand(minutesRad, minutesRadius, option.size / 300 * 10);
    
     // seconds
-    ctx.beginPath();
-    const secondRad = degToRad((newSeconds*6)-90);
-    const secondRadius =  maxRadius * 0.7;
-    drawClockHand(secondRad, secondRadius, 3);
+    if (option.visibleSecondHand) {
+      const secondRad = degToRad((newSeconds*6)-90);
+      const secondRadius =  maxRadius * 0.7;
+      drawClockHand(secondRad, secondRadius, option.size / 300 * 3);
+    }
 
     if(option.showDigital) {
       const fontSize1 = Math.max(12, option.size / 30);
@@ -109,11 +110,11 @@ function createAnalogClock(option = {}) {
       // Date 
       ctx.font = `${fontSize1}px Helvetica`;
       ctx.fillStyle = option.color;
-      ctx.fillText(today, centerX - centerX / 2, centerY * 2 - fontSize1 - fontSize2 - 20);
+      ctx.fillText(today, centerX - centerX * 0.4, centerY * 2 - fontSize1 - fontSize2 - 20);
       
       // Time
       ctx.font = `${fontSize2}px Helvetica`;
-      ctx.fillText(time, centerX - centerX / 2, centerY * 2 - fontSize2 - 20);
+      ctx.fillText(time, centerX - centerX * 0.4, centerY * 2 - fontSize2 - 20);
     }
   
     function drawClockHand (radian, radius, width) {
@@ -187,7 +188,7 @@ function createAnalogClock(option = {}) {
     if (option.smooth) {
       requestAnimationFrame(animate);
     } else {
-      var next = ((1500 - date.getMilliseconds()) % 1000) + 500;
+      var next = option.nextFunc(date);
       setTimeout(animate, next);
     }
 

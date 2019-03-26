@@ -10,6 +10,7 @@ createAnalogClock({
   id: 'clock2',
   size: 200,
   color: '#d2d2aa',
+  visibleSecondHand: false,
   backgroundColor: '#303011'
 });
 
@@ -23,7 +24,7 @@ createAnalogClock({
   });
   createAnalogClock({
     id: 'clock3',
-    size: 180,
+    size: 170,
     smooth: true,
     showDigital: true,
     dateFunc: (now) => {
@@ -46,6 +47,17 @@ createAnalogClock({
   showDigital: true,
   color: '#dd22dd',
   backgroundColor: '#000000'
+});
+
+
+// fast clock
+createAnalogClock({
+  id: 'clock6',
+  size: 250,
+  dateFunc: (now) => now.getTime() * 4,
+  nextFunc: (date) => 250,
+  showDigital: true,
+  
 });
 
 // Clock with custom background image

@@ -1,4 +1,9 @@
-# emitting-analog-clock
+emitting-analog-clock
+========
+
+[![npm version](https://badge.fury.io/js/emitting-analog-clock.svg)](https://badge.fury.io/js/emitting-analog-clock)
+
+#### javascript emitting analog clock library ####
 
 <a href="https://moritanian.github.io/emitting-analog-clock"><img src="https://moritanian.github.io/emitting-analog-clock/sample.png"/></a>
 
